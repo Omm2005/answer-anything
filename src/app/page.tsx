@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/ui/modeToggle";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 
 
