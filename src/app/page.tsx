@@ -2,6 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ModeToggle } from "@/components/ui/modeToggle";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
@@ -11,7 +13,6 @@ export default function Home() {
   const [asked, setAsked] = useState<boolean>(false)
   const [answer, setAnswer] = useState<string>("")
   const [question, setQuestion] = useState<string>("")
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleAsk = () => {
     if(question === "") {
@@ -22,30 +23,21 @@ export default function Home() {
       setAnswer("Processing")
     setTimeout(() => {
       setAnswer("Thinking")
-    } , 5000)
+    } , 4000)
     setTimeout(() => {
       setAnswer("The answer is 42")
       setQuestion("")
     } , 10000)
   }
 
-  useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      if (/[a-zA-Z]/.test(e.key) && !e.ctrlKey && !e.shiftKey && !e.altKey) {
-        inputRef.current!.focus();
-      }
-    }
-
-    document.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, []);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between mdp-24 p-10">
-      <div />
+      <div className="flex justify-between items-center w-full">
+        <h1>
+          Ask Me Anything
+        </h1>
+        <ModeToggle />
+      </div>
       <div className="z-10 max-w-5xl w-full flex-col items-center justify-center font-mono text-sm lg:flex gap-7">
         <div className="flex flex-col justify-center items-center">
         <h1 className="md:text-4xl text-xl font-bold text-center">
@@ -68,16 +60,16 @@ export default function Home() {
                     <span className="animate-ping">...</span>
                   )}
                 </p>
-                <Button onClick={() => setAsked(false)} disabled={answer !== "The answer is 42"}>
+                <Button onClick={() => setAsked(false)} disabled={answer !== "The answer is 42"} className={cn( 'cursor-not-allowed' ,answer === "The answer is 42" && 'hover:cursor-pointer')}>
                   Ask Another Question
                 </Button>
               </div>
             ) : (
               <>
-              <div className="w-full flex flex-col justify-center items-center">
+              <div className="w-full flex flex-col justify-center">
 
               <div className="flex md:flex-row flex-col justify-center items-center w-full md:gap-5 mt-4">
-        <Input ref={inputRef} placeholder="Ask Your Question to the Supercomputer" onChange={(e) => setQuestion(e.target.value)} />
+        <Input placeholder="Ask Your Question to the Supercomputer" onChange={(e) => setQuestion(e.target.value)} />
         {
           answer === "" && (
             <p className="text-start font-light text-destructive text-xs flex md:hidden mb-4 md:mb-0">
@@ -85,7 +77,7 @@ export default function Home() {
             </p>
           )
         }  
-        <Button onClick={handleAsk}>
+        <Button onClick={handleAsk} className="md:w-auto w-full">
           Ask 
         </Button>
               </div>
