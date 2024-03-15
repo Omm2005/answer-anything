@@ -41,7 +41,7 @@ export default function Home() {
       <div className="z-10 max-w-5xl w-full flex-col items-center justify-center font-mono text-sm lg:flex gap-7">
         <div className="flex flex-col justify-center items-center">
         <h1 className="md:text-4xl text-xl font-bold text-center">
-        Hitchhiker's Supercomputer
+        Hitchhiker&apos;s Supercomputer
         </h1>
         <h3 className="md:text-lg text-sm text-center">
           Answers to the Ultimate Question of Life, the Universe, and Everything
@@ -96,7 +96,7 @@ export default function Home() {
       </div>
       <div className="text-sm flex flex-col justify-center items-center">
         <p>
-          Inspired by the book "The Elon Musk" by Walter Isaacson.
+          Inspired by the book &quot;Elon Musk&quot; by Walter Isaacson.
         </p>
         <p>
           Made with ❤️ by {' '}
