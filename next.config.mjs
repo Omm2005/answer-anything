@@ -2,7 +2,7 @@
 const nextConfig = {
     images: {
         remotePatterns: [
-            {hostname: 'omm.needs.rest'},
+            {hostname: 'utfs.io'},
         ]
     }
     
